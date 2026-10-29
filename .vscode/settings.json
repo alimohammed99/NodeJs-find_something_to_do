@@ -1,0 +1,8 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^node \\.\\\\solution\\.js$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}

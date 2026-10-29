@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f7f4">
+  <meta name="description" content="Find a simple, feel-good idea for what to do next.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/main.css">
+  <title>Little Something — Find your next activity</title>
+</head>
+
+<body>
+  <main class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Little Something home">
+        <span class="brand-mark" aria-hidden="true">✳</span>
+        <span>little something</span>
+      </a>
+      <span class="header-note"><span class="status-dot" aria-hidden="true"></span> A fresh idea, just for you</span>
+    </header>
+
+    <section class="finder" aria-labelledby="page-title">
+      <div class="intro">
+        <p class="eyebrow"><span aria-hidden="true">✦</span> YOUR CUE TO DO SOMETHING</p>
+        <h1 id="page-title">A little less scrolling.<br><span>A little more living.</span></h1>
+        <p class="intro-copy">Not sure what to do? We’ve got a small idea that could make your day.</p>
+      </div>
+
+      <form action="/" id="form" class="form" method="POST">
+        <div class="field">
+          <label for="activity-type">What are you in the mood for?</label>
+          <select name="type" id="activity-type" class="form-select">
+            <option value="">Surprise me</option>
+            <option value="education">Learn something</option>
+            <option value="charity">Give back</option>
+            <option value="recreational">Have some fun</option>
+            <option value="relaxation">Slow down</option>
+            <option value="busywork">Get something done</option>
+            <option value="social">Connect with people</option>
+            <option value="diy">Make something</option>
+            <option value="music">Enjoy some music</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="participants">How many people?</label>
+          <select name="participants" id="participants" class="form-select">
+            <option value="">Any number</option>
+            <option value="1">Just me</option>
+            <option value="2">Two people</option>
+            <option value="3">Three people</option>
+            <option value="4">Four people</option>
+          </select>
+        </div>
+        <button type="submit" class="form-submit">
+          Find an idea <span aria-hidden="true">↗</span>
+        </button>
+      </form>
+
+      <section id="cards" class="cards" aria-live="polite" aria-label="Activity suggestion">
+        <% if (locals.data) { %>
+          <article class="card-item">
+            <div class="card-topline">
+              <span class="card-kicker"><span aria-hidden="true">✦</span> YOUR NEXT LITTLE ADVENTURE</span>
+              <span class="card-sparkle" aria-hidden="true">✳</span>
+            </div>
+            <h2 class="card-activity"><%= data.activity %></h2>
+            <div class="card-info">
+              <span class="card-type"><%= data.type %></span>
+              <span class="card-participants">
+                <span class="people-icon" aria-hidden="true">●</span>
+                <%= data.participants %> <%= data.participants === 1 ? "person" : "people" %>
+              </span>
+            </div>
+          </article>
+        <% } %>
+
+        <% if (locals.error) { %>
+          <div id="tag-error" class="tag-error" role="alert">
+            <span class="error-icon" aria-hidden="true">!</span>
+            <div>
+              <strong>No idea found this time</strong>
+              <p><%= error %> Try changing your filters and give it another go.</p>
+            </div>
+          </div>
+        <% } %>
+      </section>
+
+      <p class="closing-note"><span aria-hidden="true">☀</span> The best plans can be the little ones.</p>
+    </section>
+  </main>
+</body>
+
+</html>
